@@ -1,7 +1,8 @@
 import React from "react";
+import Profile from "../profile/Profile";
 
 const Home: React.FC = () => {
-  return <div>welcome from home</div>;
+  return <Profile />;
 };
 
 export default Home;

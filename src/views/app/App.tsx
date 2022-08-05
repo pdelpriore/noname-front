@@ -9,16 +9,16 @@ import {
 } from "react-router-dom";
 import withSnackbar from "../../components/snackbar/withSnackbar";
 import Home from "../home/Home";
-import Main from "../main/Main";
+import UserSignin from "../register/user/signin/UserSignin";
 import ProtectedRoutes from "../../components/route/ProtectedRoutes";
-import UserSignup from "../register/user/UserSignup";
+import UserSignup from "../register/user/signup/UserSignup";
 
 const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route path="/login" element={<Main />} />
+          <Route path="/login" element={<UserSignin />} />
           <Route path="/add/user" element={<UserSignup />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/" element={<Home />} />
