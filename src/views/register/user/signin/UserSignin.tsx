@@ -8,7 +8,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Form from "../../../../components/form/Form";
 import { loginFormItems } from "../../../../data/FormData";
 import { gql, useLazyQuery } from "@apollo/client";
@@ -26,8 +26,23 @@ interface ISigninInputs {
   password: string;
 }
 
+type TFrom = {
+  pathname?: string;
+};
+
+type TState = {
+  from?: TFrom;
+};
+
+interface ILocation {
+  state?: TState;
+}
+
 const UserSignin: React.FC = () => {
   const navigate = useNavigate();
+
+  const location = useLocation() as unknown as ILocation;
+  const pathname = location.state?.from?.pathname || "/";
 
   const initSigninInput = {
     email: "",
@@ -44,7 +59,7 @@ const UserSignin: React.FC = () => {
           JSON.stringify({ isUserLogged: true })
         );
         isLogged(JSON.parse(localStorage.getItem("isLogged") as string));
-        navigate("/");
+        navigate(pathname, { replace: true });
       }
     },
   });
