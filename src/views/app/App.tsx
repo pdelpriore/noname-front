@@ -1,12 +1,7 @@
 import React from "react";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../../config/apollo/ApolloClient";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import withSnackbar from "../../components/snackbar/withSnackbar";
 import Home from "../home/Home";
 import UserSignin from "../register/user/signin/UserSignin";

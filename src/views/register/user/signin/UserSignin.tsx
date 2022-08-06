@@ -13,6 +13,7 @@ import Form from "../../../../components/form/Form";
 import { loginFormItems } from "../../../../data/FormData";
 import { gql, useLazyQuery } from "@apollo/client";
 import showMessage from "../../../../shared/showMessage";
+import isLogged from "../../../../shared/isLogged";
 
 const USER_SIGNIN = gql`
   query Query($email: String!, $password: String!) {
@@ -42,7 +43,8 @@ const UserSignin: React.FC = () => {
           "isLogged",
           JSON.stringify({ isUserLogged: true })
         );
-        navigate("/", { replace: true });
+        isLogged(JSON.parse(localStorage.getItem("isLogged") as string));
+        navigate("/");
       }
     },
   });
