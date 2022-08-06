@@ -67,7 +67,7 @@ const UserSignin: React.FC = () => {
   const handleSigninInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSigninInput((input) => ({ ...input, [e.target.name]: e.target.value }));
 
-  const handleUserSignup = () => navigate("/add/user");
+  const handleUserSignup = () => navigate("/register");
   const handleUserSignin = () => userSignin({ variables: signinInput });
 
   useEffect(() => {

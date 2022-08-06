@@ -1,11 +1,11 @@
 import React from "react";
-import { useReactiveVar } from "@apollo/client";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import isLogged, { ILogged } from "../../shared/isLogged";
 
-const ProtectedRoutes: React.FC = () => {
-  const { isUserLogged } = useReactiveVar<ILogged>(isLogged) || ({} as ILogged);
+interface IProtectedRoutes {
+  isUserLogged: boolean;
+}
 
+const ProtectedRoutes: React.FC<IProtectedRoutes> = ({ isUserLogged }) => {
   const location = useLocation();
 
   return isUserLogged ? (
