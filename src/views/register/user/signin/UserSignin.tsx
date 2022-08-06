@@ -26,12 +26,8 @@ interface ISigninInputs {
   password: string;
 }
 
-type TFrom = {
-  pathname?: string;
-};
-
 type TState = {
-  from?: TFrom;
+  from?: string;
 };
 
 interface ILocation {
@@ -41,8 +37,7 @@ interface ILocation {
 const UserSignin: React.FC = () => {
   const navigate = useNavigate();
 
-  const location = useLocation() as unknown as ILocation;
-  const pathname = location.state?.from?.pathname || "/";
+  const { state: { from = "/" } = {} } = useLocation() as unknown as ILocation;
 
   const initSigninInput = {
     email: "",
@@ -59,7 +54,7 @@ const UserSignin: React.FC = () => {
           JSON.stringify({ isUserLogged: true })
         );
         isLogged(JSON.parse(localStorage.getItem("isLogged") as string));
-        navigate(pathname, { replace: true });
+        navigate(from, { replace: true });
       }
     },
   });

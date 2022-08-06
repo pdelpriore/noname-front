@@ -6,12 +6,12 @@ interface IProtectedRoutes {
 }
 
 const ProtectedRoutes: React.FC<IProtectedRoutes> = ({ isUserLogged }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return isUserLogged ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
+    <Navigate to="/login" state={{ from: pathname }} replace />
   );
 };
 
