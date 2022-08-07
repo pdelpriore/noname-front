@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-interface IUnprotectedRoutes {
+interface IPublicRoutes {
   isUserLogged: boolean;
 }
 
-const UnprotectedRoutes: React.FC<IUnprotectedRoutes> = ({ isUserLogged }) => {
+const PublicRoutes: React.FC<IPublicRoutes> = ({ isUserLogged }) => {
   return !isUserLogged ? <Outlet /> : <Navigate to="/" replace />;
 };
 
-export default UnprotectedRoutes;
+export default PublicRoutes;

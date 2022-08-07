@@ -46,40 +46,37 @@ const Profile: React.FC = () => {
 
   const handleUserSignout = () => userSignout();
 
-  const name = data?.me.name;
-  const email = data?.me.email;
+  const { name = "", email = "" } = { ...data?.me };
 
   return (
-    <Box padding={1}>
-      <Box display="flex" justifyContent="flex-end">
-        {!meLoading ? (
-          <Card
-            sx={{
-              maxWidth: 345,
-              backgroundColor: "#E9ECEF",
-              borderRadius: 2,
-            }}
-            elevation={0}
-          >
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  {name.charAt(0).toUpperCase()}
-                </Avatar>
-              }
-              title={name}
-              subheader={email}
-            />
-          </Card>
-        ) : (
-          <CircularProgress />
-        )}
-        {!userSignoutLoading ? (
-          <Button onClick={handleUserSignout}>Wyloguj</Button>
-        ) : (
-          <CircularProgress />
-        )}
-      </Box>
+    <Box display="flex" justifyContent="flex-end">
+      {!meLoading ? (
+        <Card
+          sx={{
+            maxWidth: 345,
+            backgroundColor: "#E9ECEF",
+            borderRadius: 2,
+          }}
+          elevation={0}
+        >
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                {name.charAt(0).toUpperCase()}
+              </Avatar>
+            }
+            title={name}
+            subheader={email}
+          />
+        </Card>
+      ) : (
+        <CircularProgress />
+      )}
+      {!userSignoutLoading ? (
+        <Button onClick={handleUserSignout}>Wyloguj</Button>
+      ) : (
+        <CircularProgress />
+      )}
     </Box>
   );
 };

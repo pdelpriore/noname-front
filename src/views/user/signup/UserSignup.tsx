@@ -8,11 +8,11 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import Form from "../../../../components/form/Form";
-import { userSignupFormItems } from "../../../../data/FormData";
+import Form from "../../../components/form/Form";
+import { userSignupFormItems } from "../../../data/FormData";
 import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
-import showMessage from "../../../../shared/showMessage";
+import showMessage from "../../../shared/showMessage";
 
 const USER_SIGNUP = gql`
   mutation UserSignup($name: String!, $email: String!, $password: String!) {

@@ -9,11 +9,11 @@ import {
   TextField,
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import Form from "../../../../components/form/Form";
-import { loginFormItems } from "../../../../data/FormData";
+import Form from "../../../components/form/Form";
+import { loginFormItems } from "../../../data/FormData";
 import { gql, useLazyQuery } from "@apollo/client";
-import showMessage from "../../../../shared/showMessage";
-import isLogged from "../../../../shared/isLogged";
+import showMessage from "../../../shared/showMessage";
+import isLogged from "../../../shared/isLogged";
 
 const USER_SIGNIN = gql`
   query Query($email: String!, $password: String!) {
