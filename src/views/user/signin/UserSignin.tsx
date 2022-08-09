@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -46,7 +46,7 @@ const UserSignin: React.FC = () => {
 
   const [signinInput, setSigninInput] = useState(initSigninInput);
 
-  const [userSignin, { loading, error }] = useLazyQuery(USER_SIGNIN, {
+  const [userSignin, { loading }] = useLazyQuery(USER_SIGNIN, {
     onCompleted: (data) => {
       if (data?.userSignin) {
         localStorage.setItem(
@@ -57,6 +57,9 @@ const UserSignin: React.FC = () => {
         navigate(from, { replace: true });
       }
     },
+    onError: (error) => {
+      if (error) showMessage({ message: error.message });
+    },
   });
 
   const handleSigninInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -64,10 +67,6 @@ const UserSignin: React.FC = () => {
 
   const handleUserSignup = () => navigate("/register");
   const handleUserSignin = () => userSignin({ variables: signinInput });
-
-  useEffect(() => {
-    if (error) showMessage({ message: error.message });
-  }, [error]);
 
   return (
     <Box

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -37,9 +37,12 @@ const UserSignup: React.FC = () => {
 
   const [inputs, setInputs] = useState(initUserInput);
 
-  const [userSignup, { loading, error }] = useMutation(USER_SIGNUP, {
+  const [userSignup, { loading }] = useMutation(USER_SIGNUP, {
     onCompleted: (data) => {
       if (data?.userSignup) navigate(-1);
+    },
+    onError: (error) => {
+      if (error) showMessage({ message: error.message });
     },
   });
 
@@ -49,10 +52,6 @@ const UserSignup: React.FC = () => {
   const handleUserSignup = () => userSignup({ variables: inputs });
 
   const handleGoBack = () => navigate(-1);
-
-  useEffect(() => {
-    if (error) showMessage({ message: error.message });
-  }, [error]);
 
   return (
     <Box
